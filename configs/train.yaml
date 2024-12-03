@@ -1,0 +1,78 @@
+# main paths
+data_path: "SIIM-ACR-Pneumothorax-Segmentation"
+annotation_path: "SIIM-ACR-Pneumothorax-Segmentation"
+exp_path: "Experiments"
+
+# train
+annotations: "train.csv"
+images: "dicom-images"
+masks: "masks"
+
+# validation
+val_annotations: "val.csv"
+val_images: "dicom-images"
+val_masks: "masks"
+
+# exp params
+exp_name: baseline
+project: SIIM-ACR-Pneumothorax-Segmentation
+
+trainer:
+  precision: 32
+  sync_batchnorm: True
+  gradient_clip_val: 1.0
+  max_epochs: 3
+  accelerator: auto
+  #  accelerator: gpu
+  devices: auto
+  #  devices: [0]
+
+weights:
+
+model:
+  smp_model_name: "Unet"
+  kwargs:
+    encoder_name: 'tu-tf_efficientnet_b0'
+    encoder_weights: 'imagenet'
+    in_channels: 3
+    classes: 1
+
+dataloader:
+  batch_size: 32
+  num_workers: 2
+
+preprocess:
+  side_size: 512
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+transforms:
+  - name: 'RandomBrightnessContrast'
+    kwargs:
+      brightness_by_max: True
+      p: 0.5
+  - name: 'ImageCompression'
+    kwargs:
+      quality_lower: 99
+      quality_upper: 100
+      compression_type: 0
+      p: 0.1
+  - name: 'HorizontalFlip'
+    kwargs:
+      p: 0.5
+
+
+optimizer: adam
+optimizer_params:
+  lr: 0.001
+  weight_decay: 0.0001
+
+scheduler: cosine
+scheduler_params:
+  warmup_epochs: 0
+
+checkpoint:
+  monitor: BinaryAUROC/classification/val
+  filename: model
+  mode: max
+
