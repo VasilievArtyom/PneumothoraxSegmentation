@@ -1,3 +1,7 @@
+# Current project
+SIIM-ACR-Pneumothorax-Segmentation/
+Experiments/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
