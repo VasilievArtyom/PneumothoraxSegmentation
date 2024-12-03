@@ -8,8 +8,8 @@ images: "dicom-images"
 masks: "masks"
 
 # exp params
-save_path: "Experiments/MNIST/baseline"
-test_name: val
+save_path: "Experiments/SIIM-ACR-Pneumothorax-Segmentation/baseline"
+test_name: test
 
 trainer:
   precision: 32
@@ -20,8 +20,12 @@ trainer:
 
 weights: "Experiments/SIIM-ACR-Pneumothorax-Segmentation/baseline/model.ckpt"
 model:
-  encoder: "tf_efficientnet_b0"
-  output: 10
+  smp_model_name: "Unet"
+  kwargs:
+    encoder_name: 'tu-tf_efficientnet_b2'
+    encoder_weights: 'imagenet'
+    in_channels: 3
+    classes: 1
 
 dataloader:
   batch_size: 128

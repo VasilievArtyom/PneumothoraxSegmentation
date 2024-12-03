@@ -1,5 +1,4 @@
 from torch import nn
-import torch
 
 
 class TorchLoss(nn.Module):
@@ -10,9 +9,9 @@ class TorchLoss(nn.Module):
         self.cls_coef = cls_coef
 
     def forward(
-            self, 
-            preds_mask, preds_label,
-            target_mask, target_label
+        self, 
+        preds_mask, preds_label,
+        target_mask, target_label
     ):
         segmentation_loss = self.segmentation_loss(preds_mask, target_mask)
         cls_loss = self.cls_loss(preds_label, target_label)

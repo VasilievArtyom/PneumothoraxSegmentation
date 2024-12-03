@@ -10,6 +10,7 @@ class TestDataset(TrainDataset):
     def __init__(self, config, mode='test'):
         config['val_images'] = config['images']
         config['val_annotations'] = config['annotations']
+        config['val_masks'] = config['masks']
         super().__init__(config, mode='test')
         self.mode = mode
         self.config = config
