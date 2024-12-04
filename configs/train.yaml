@@ -21,7 +21,7 @@ trainer:
   precision: '16-mixed'
   sync_batchnorm: True
   gradient_clip_val: 1.0
-  max_epochs: 5
+  max_epochs: 3
   accelerator: auto
   #  accelerator: gpu
   devices: auto
@@ -32,7 +32,7 @@ weights:
 model:
   smp_model_name: "Unet++"
   kwargs:
-    encoder_name: 'tu-tf_efficientnet_b0'
+    encoder_name: 'tu-tf_efficientnet_b1'
     encoder_weights: 'imagenet'
     in_channels: 3
     classes: 1
