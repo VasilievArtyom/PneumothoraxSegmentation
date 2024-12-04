@@ -18,7 +18,7 @@ exp_name: baseline
 project: SIIM-ACR-Pneumothorax-Segmentation
 
 trainer:
-  precision: 32
+  precision: '16-mixed'
   sync_batchnorm: True
   gradient_clip_val: 1.0
   max_epochs: 5

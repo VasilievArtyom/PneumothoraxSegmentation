@@ -12,7 +12,7 @@ save_path: "Experiments/SIIM-ACR-Pneumothorax-Segmentation/baseline"
 test_name: test
 
 trainer:
-  precision: 32
+  precision: '16-mixed'
   accelerator: auto
   #  accelerator: gpu
   devices: auto
