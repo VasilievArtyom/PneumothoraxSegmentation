@@ -20,9 +20,9 @@ trainer:
 
 weights: "Experiments/SIIM-ACR-Pneumothorax-Segmentation/baseline/model.ckpt"
 model:
-  smp_model_name: "Unet"
+  smp_model_name: "Unet++"
   kwargs:
-    encoder_name: 'tu-tf_efficientnet_b2'
+    encoder_name: 'tu-tf_efficientnet_b0'
     encoder_weights: 'imagenet'
     in_channels: 3
     classes: 1
